@@ -1,0 +1,20 @@
+name: mydocker
+on: 
+  push:
+
+jobs:
+  docker1:
+   runs-on: ubuntu-22.04
+   steps:
+    - uses: actions/checkout@v3
+
+    - name: Login to Docker Hub
+      run: |
+       docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASS}}
+             
+              
+    - name: Build and push
+      uses: docker/build-push-action@v3
+      with:
+        push: true
+        tags: armangrig88/golang:latest
