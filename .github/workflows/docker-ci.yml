@@ -16,7 +16,7 @@ jobs:
         run: |
           docker login -u $DOCKER_USER -p $DOCKER_PASS
       - name: Build docker image
-        run: docker build -t $DOCKER_USER/test:$GITHUB_SHA .
+        run: docker build -t $DOCKER_USER/test:$(date +%s) .
 
       - name: Push to dockerhub
         run: docker push $DOCKER_USER/test
