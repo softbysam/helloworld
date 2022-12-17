@@ -4,18 +4,18 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-22.04
+    env: 
+      DOCKER_USER: ${{secrets.DOCKER_USER}}
+      DOCKER_PASS: ${{secrets.DOCKER_PASS}}
 
     steps:
       - uses: actions/checkout@v3
 
       - name: Docker sign-in
-        env: 
-          DOCKER_USER: ${{secrets.DOCKER_USER}}
-          DOCKER_PASS: ${{secrets.DOCKER_PASS}}
         run: |
           docker login -u $DOCKER_USER -p $DOCKER_PASS
       - name: Build docker image
-        run: docker build -t my-golang-app .
+        run: docker build -t $DOCKER_USER/test .
 
       - name: Push to dockerhub
-        run: docker push ${{secrets.DOCKER_USER}}/test
+        run: docker push $DOCKER_USER/test
