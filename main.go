@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/Samvel333/gox"
+)
 
 func helloworld() string {
 	return "Hello World!!"
@@ -8,4 +12,5 @@ func helloworld() string {
 
 func main() {
 	fmt.Println(helloworld())
+	println(gox.SaySomething("Hayastan"))
 }

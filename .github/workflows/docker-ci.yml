@@ -1,0 +1,21 @@
+name: Docker CI
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Docker sign-in
+        env: 
+          DOCKER_USER = ${{secrets.DOCKER_USER}}
+          DOCKER_PASS = ${{secrets.DOCKER_PASS}}
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - name: Build docker image
+        run: docker build -t my-golang-app .
+
+      - name: Push to dockerhub
+        run: docker push ${{secrets.DOCKER_USER}}/test
