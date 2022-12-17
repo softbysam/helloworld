@@ -1,0 +1,13 @@
+name: Pull and Run Docker image
+on: push
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Pull docker image
+        run: docker pull postgres:15.1-alpine
+      
+      - name: Run pulled image
+        run: docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres:15.1-alpine
