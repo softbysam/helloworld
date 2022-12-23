@@ -1,6 +1,6 @@
 name: Go Matrix Build
 
-on: [push]
+on: push
 
 jobs:
   matrix-build:
