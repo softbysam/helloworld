@@ -3,7 +3,7 @@ name: Go Matrix Build
 on: [push]
 
 jobs:
-  build:
+  matrix-build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
