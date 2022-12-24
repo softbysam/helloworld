@@ -7,20 +7,15 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        go-version: [1.15, 1.16, 1.17]
-        ubuntu-version: [20.04, 18.04]
+        go-version: [1.16, 1.17, 1.18]
+        ubuntu-version: [20.04, 22.04]
     steps:
-    - uses: actions/checkout@v2
     - name: Set up Go
-      uses: actions/setup-go@v2
+      uses: actions/setup-go@v3
       with:
         go-version: ${{ matrix.go-version }}
     - name: Set up Ubuntu
-      uses: actions/setup-node@v1
       with:
-        node-version: 14.x
         distro: ubuntu-${{ matrix.ubuntu-version }}
-    - name: Build and test
-      run: |
-        go build -v .
-        go test -v ./...
+    - name: Build
+      run: go build -v .
